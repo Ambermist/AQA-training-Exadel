@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "ec5d7289-3d91-4b7f-8403-5985582bfcff",
+		"name": "petstore.swagger.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user_post",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": 2,\r\n    \"username\": \"user3\",\r\n    \"firstName\": \"string\",\r\n    \"lastName\": \"string\",\r\n    \"email\": \"string\",\r\n    \"password\": \"user1\",\r\n    \"phone\": \"string\",\r\n    \"userStatus\": 0\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}user/createWithList?var={{my_var}}",
+					"host": [
+						"{{url}}user"
+					],
+					"path": [
+						"createWithList"
+					],
+					"query": [
+						{
+							"key": "var",
+							"value": "{{my_var}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_get",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}user/{{user}}",
+					"host": [
+						"{{url}}user"
+					],
+					"path": [
+						"{{user}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_put",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "special-key",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"id\": 12,\r\n    \"username\": \"user2\",\r\n    \"firstName\": \"123\",\r\n    \"lastName\": \"123\",\r\n    \"email\": \"123\",\r\n    \"password\": \"123\",\r\n    \"phone\": \"string\",\r\n    \"userStatus\": 0\r\n  }"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/user2",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"user2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_delete",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "special-key",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/user2",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"user2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
