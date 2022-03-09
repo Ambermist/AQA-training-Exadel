@@ -1,0 +1,14 @@
+{
+  "name": "lesson2_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "processEnv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "webdriverio": "^7.16.16"
+  }
+}
