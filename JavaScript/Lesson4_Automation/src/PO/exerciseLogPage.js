@@ -23,6 +23,9 @@ class Log {
     get dateInput(){
         return $("//div[@data-ta='date']//input");
     }
+    get datePicker(){
+        return $(".react-datepicker-popper");
+    }
     get buttonL(){
         return $("//button[@aria-label='Previous Month']")
     }

@@ -13,12 +13,7 @@ describe('Upload Page', function () {
         await Upload.fileInput.setValue(filepath);
         await expect(Upload.fileInput).toHaveValue('C:\\fakepath\\forCheck.txt');
         await expect(Upload.uploadButton).toHaveText('Upload File');
-        let headersValues = [];
-        const headers = await Upload.headers;
-        for (const head of headers){
-            const headText = await head.getText();
-            headersValues.push(headText);
-        }
+        let headersValues = await Upload.headers.map((item)=>item.getText());
         expect(headersValues).toEqual(['File Name', 'Action']);
     })
 

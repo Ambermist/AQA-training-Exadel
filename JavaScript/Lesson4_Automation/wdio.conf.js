@@ -20,6 +20,7 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
+    //automationProtocol: 'devtools',
     specs: [
         './specs/**/*.js'
     ],
@@ -50,7 +51,7 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -62,6 +63,12 @@ exports.config = {
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
+    // }, {
+    //     maxInstances: 5, 
+    //     browserName: 'firefox',
+    //     'moz:firefoxOptions': {
+    //         binary: 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Mozilla\\Nightly\\100.0a1 (x64 en-US)\\Main\\PathToExe'
+    //     }
     }],
     //
     // ===================
@@ -110,7 +117,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    services: ['devtools', 'chromedriver'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -230,6 +237,11 @@ exports.config = {
      */
     // afterTest: function(test, context, { error, result, duration, passed, retries }) {
     // },
+    afterTest(test, context, { passed }) {
+        if (!passed || passed) {
+            browser.takeScreenshot()
+        }
+    }
 
 
     /**

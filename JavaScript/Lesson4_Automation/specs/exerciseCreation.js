@@ -1,11 +1,12 @@
 const { Page } = require('../src/PO/page.js');
 const { Log } = require('../src/PO/exerciseLogPage.js');
-const { formatDate } = require('./formatDate.js');
+const { formatDate } = require('../utils/formatDate.js');
 describe('Exercise Creation Page', function () {
     it('should have correct fields', async function () {
         Page.open('http://localhost:3000/');
         Page.header.waitForDisplayed({ timeout: 3000 });
         Page.navigateTo('Create Exercise Log');
+        Log.selectUser.waitForDisplayed({timeout:3000});
         const pageTitle = await Page.pageTitle.getText();
         expect(pageTitle).toEqual('Create New Exercise');
         await expect(Log.userLabel).toExist();
@@ -26,8 +27,12 @@ describe('Exercise Creation Page', function () {
         await Log.descriptionInput.setValue('descr'+Math.floor(Math.random()*1000));
         await Log.durationInput.setValue('3');
         await Log.dateInput.click();
-        await Log.buttonL.click();
-        await $("//div[@aria-label='Choose Tuesday, February 22nd, 2022']").click();
+        const existingDate = await Log.dateInput.getValue();
+        const dateLength = existingDate.length;
+        let keysArr = new Array(dateLength).fill("\uE003");
+        await browser.keys(keysArr);
+        await Log.dateInput.setValue(formatDate(new Date('December 17, 2021 03:24:00'), 'mm/dd/yyyy'));
+        await Log.durationInput.click();        
         await Log.exerciseSubmit.click();
     })
 })

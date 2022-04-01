@@ -1,6 +1,7 @@
 const { Page } = require('../src/PO/page.js');
 const { Exercises } = require('../src/PO/exercisesPage.js');
 const { LogEdit } = require('../src/PO/exerciseLogPageEdit.js');
+const { formatDate } = require('../utils/formatDate.js');
 describe('Exercises Page', function () {
     it('should have correct cells data', async function () {
         Page.open('http://localhost:3000/');
@@ -8,12 +9,7 @@ describe('Exercises Page', function () {
         Page.navigateTo('Exercises');
         const pageTitle = await Page.pageTitle.getText();
         expect(pageTitle).toEqual('Logged Exercises');
-        let headersValues = [];
-        const headers = await Exercises.headers;
-        for (const head of headers){
-            const headText = await head.getText();
-            headersValues.push(headText);
-        }
+        let headersValues = await Exercises.headers.map((item)=>item.getText());
         expect(headersValues).toEqual(['Username', 'Description', 'Duration', 'Date', 'Actions']);
         const tableRows = await Exercises.rows;
         const tableRow = tableRows[0];
@@ -40,7 +36,12 @@ describe('Exercises Page', function () {
         await LogEdit.descriptionInput.setValue('descr'+Math.floor(Math.random()*1000));        
         await LogEdit.durationInput.setValue('5');
         await LogEdit.dateInput.click();
-        await $("//div[@aria-label='Choose Friday, February 25th, 2022']").click();
+        const existingDate = await LogEdit.dateInput.getValue();
+        const dateLength = existingDate.length;
+        let keysArr = new Array(dateLength).fill("\uE003");
+        await browser.keys(keysArr);
+        await LogEdit.dateInput.setValue(formatDate(new Date(), 'mm/dd/yyyy'));
+        await LogEdit.durationInput.click();        
         await LogEdit.exerciseSubmit.click();
         await browser.pause(500);
 
