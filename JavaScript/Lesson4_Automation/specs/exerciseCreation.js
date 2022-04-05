@@ -6,7 +6,7 @@ describe('Exercise Creation Page', function () {
         Page.open('http://localhost:3000/');
         Page.header.waitForDisplayed({ timeout: 3000 });
         Page.navigateTo('Create Exercise Log');
-        Log.selectUser.waitForDisplayed({timeout:3000});
+        Log.selectUser.waitForDisplayed({timeout:5000});
         const pageTitle = await Page.pageTitle.getText();
         expect(pageTitle).toEqual('Create New Exercise');
         await expect(Log.userLabel).toExist();

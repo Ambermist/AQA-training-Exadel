@@ -1,3 +1,8 @@
+const drivers = {
+    chrome: { version: '91.0.4472.101' }, // https://chromedriver.chromium.org/
+    firefox: { version: '0.29.1' }, // https://github.com/mozilla/geckodriver/releases
+    chromiumedge: { version: '85.0.564.70' } // https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+}
 exports.config = {
     //
     // ====================
@@ -63,13 +68,12 @@ exports.config = {
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
-    // }, {
-    //     maxInstances: 5, 
-    //     browserName: 'firefox',
-    //     'moz:firefoxOptions': {
-    //         binary: 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Mozilla\\Nightly\\100.0a1 (x64 en-US)\\Main\\PathToExe'
-    //     }
-    }],
+    }, {
+        maxInstances: 5,
+        browserName: 'firefox',
+        acceptInsecureCerts: true
+        }
+    ],
     //
     // ===================
     // Test Configurations
@@ -117,7 +121,14 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['devtools', 'chromedriver'],
+    services: ['devtools', 'chromedriver',
+        // ['selenium-standalone', {
+        //     logPath: 'logs',
+        //     installArgs: { drivers }, // drivers to install
+        //     args: { drivers } // drivers to use
+        // }]
+        ['selenium-standalone', { drivers: { firefox: 'latest', chrome: true, chromiumedge: 'latest' } }]
+    ],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -139,9 +150,11 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
-
-
+    reporters: ['spec',
+    ['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true}]
+    ],
     
     //
     // Options to be passed to Mocha.

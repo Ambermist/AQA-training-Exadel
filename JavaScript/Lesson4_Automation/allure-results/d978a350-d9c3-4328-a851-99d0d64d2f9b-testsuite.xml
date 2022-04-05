@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1649173946723' stop='1649173950678'>
+    <name>Exercise Creation Page</name>
+    <title>Exercise Creation Page</title>
+    <test-cases>
+        <test-case start='1649173946724' status='passed' stop='1649173948377'>
+            <name>should have correct fields</name>
+            <title>should have correct fields</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='1-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='firefox-101.0a1'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1649173948379' status='passed' stop='1649173950676'>
+            <name>should create exercise</name>
+            <title>should create exercise</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='1-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='firefox-101.0a1'/>
+            </parameters>
+            <steps/>
+            <attachments>
+                <attachment title='Screenshot' source='9c19dad6-755f-4ea2-be95-3644b90882da-attachment.png' type='image/png' size='50447'/>
+            </attachments>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
